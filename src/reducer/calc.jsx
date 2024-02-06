@@ -6,6 +6,7 @@ export const initialState = {
 
 export const reducer = (state, action) => {
 	console.log(eval("12+3+2"))
+	console.log("+* *+ .+ .* *. +. .. ++ **".split(" ").every((op) => !`${state.current}${action.value}`.includes(op)))
 	switch (action.type) {
 		case "ADD_SYMBOL":
 			return { ...state, current: state.current + action.value }

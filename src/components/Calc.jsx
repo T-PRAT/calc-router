@@ -23,7 +23,7 @@ export default function Calc() {
 			<p>{state.current}</p>
 			<div className="calc-numbers-list grid grid-cols-[40px_40px_40px_40px]">
 				{numbersRow1.map(n => <CalcButton key={n} clicker={handleClickNumber(n)} label={n} />)}
-				<CalcButton clicker={handleClickOperation("ADD_OPERATION")} label={"+"} />
+				<CalcButton clicker={handleClickNumber("+")} label={"+"} />
 				{numbersRow2.map(n => <CalcButton key={n} clicker={handleClickNumber(n)} label={n} />)}
 				<CalcButton clicker={handleClickOperation("MULTIPLY_OPERATION")} label={"x"} />
 				{numbersRow3.map(n => <CalcButton key={n} clicker={handleClickNumber(n)} label={n} />)}
