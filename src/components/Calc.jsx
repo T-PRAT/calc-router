@@ -1,6 +1,10 @@
 import { useReducer, useEffect, useState } from "react";
 import { CalcButton } from "./CalcButton.jsx";
 import { reducer, initialState } from "../reducer/calc.jsx";
+import { Card } from "../wrapper/Card.jsx";
+import { CalcEntry } from "../wrapper/CalcEntry.jsx";
+import { CalcGrid } from "../wrapper/CalcGrid.jsx";
+import { CalcWrapper } from "../wrapper/CalcWrapper.jsx";
 import localforage from "localforage";
 import clear from "../assets/clear.svg";
 
@@ -30,18 +34,18 @@ export default function Calc({ dayId }) {
 	}
 
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-2 pt-12 mx-auto max-w-2xl space-x-2 rounded-lg">
-			<div className="bg-zinc-800 px-12 py-6 rounded-lg">
+		<CalcWrapper>
+			<Card relative={false}>
 				{state.message && <p className="">{state.message}</p>}
-				<p className="bg-zinc-600 w-full h-14 rounded text-right text-3xl mb-2 flex items-center justify-end pr-2 overflow-auto">{state.current}</p>
-				<div className="calc-numbers-list grid grid-cols-4 gap-1">
+				<CalcEntry>{state.current}</CalcEntry>
+				<CalcGrid>
 					{state.symbols.map(s => <CalcButton key={s} clicker={handleClickSymbol(s)} label={s} />)}
 
 					<CalcButton clicker={() => dispatch({ type: "EQUALS", dayId: dayId })} label={"="} />
 					<CalcButton clicker={handleClickOperation("CLEAR")} label={"C"} />
-				</div>
-			</div>
-			<div className="relative bg-zinc-800 px-12 py-6 rounded-lg">
+				</CalcGrid>
+			</Card>
+			<Card relative={true}>
 				<button onClick={handleClickClearData}>
 					<img src={clear} alt="clear" className="w-6 h-6 absolute top-2 right-2 " />
 				</button>
@@ -49,7 +53,7 @@ export default function Calc({ dayId }) {
 				<ul className="text-left space-y-2">
 					{data.map((d, i) => <li className="p" key={i}>{d[0]} = {d[1]}</li>)}
 				</ul>
-			</div>
-		</div>
+			</Card>
+		</CalcWrapper>
 	)
 }
