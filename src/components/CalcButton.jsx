@@ -1,5 +1,5 @@
 export function CalcButton({ clicker, label }) {
 	return (
-		<button className="h-10 bg-zinc-400 w-10 text-zinc-950 font-bold border border-zinc-950" onClick={clicker}>{label}</button>
+		<button className="h-14 bg-zinc-400 w-14 text-zinc-950 font-bold rounded hover:bg-zinc-500 active:bg-zinc-600" onClick={clicker}>{label}</button>
 	)
 }

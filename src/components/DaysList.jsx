@@ -11,12 +11,10 @@ export function DaysList() {
 	]
 
 	return (
-		<ul className="bg-zinc-800 flex space-x-4 p-4">
+		<div className="bg-zinc-800 flex flex-col p-6 w-1/6 h-[90vh]">
 			{days.map((day) => (
-				<li key={day.id}>
-					<NavLink to={`/day/${day.id}`}>{day.id}. {day.day}</NavLink>
-				</li>
+				<NavLink key={day} to={`/day/${day.id}`} className={({ isActive }) => isActive ? "bg-zinc-700 p-4 w-full hover:bg-zinc-700 rounded-lg my-1" : "bg-zinc-800 p-4 hover:bg-zinc-700 w-full rounded-lg my-1"}>{day.day}</NavLink>
 			))}
-		</ul>
+		</div>
 	)
 }

@@ -5,10 +5,12 @@ function Layout({ children }) {
 	return (
 		<div className="">
 			<Navigation />
-			<DaysList />
-			<main className="p-8">
-				{children}
-			</main>
+			<div className="flex">
+				<DaysList />
+				<main className="p-8 text-center w-full">
+					{children}
+				</main>
+			</div>
 		</div>
 	)
 }
