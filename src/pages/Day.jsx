@@ -16,7 +16,7 @@ export function Day() {
 	return (
 		<Layout>
 			<h3 className="text-xl pb-4">Calcul du {days[parseInt(dayId, 10)]}</h3>
-			<Calc />
+			<Calc dayId={dayId}/>
 		</Layout>
 	)
 }
