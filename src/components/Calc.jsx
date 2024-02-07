@@ -20,6 +20,10 @@ export default function Calc({ dayId }) {
 		}).catch((err) => console.error(err))
 	}, [state.fetchData, dayId])
 
+	useEffect(() => {
+		dispatch({ type: "RESET" })
+	}, [dayId])
+
 	const handleClickSymbol = (value) => () => {
 		dispatch({ type: "ADD_SYMBOL", value: value })
 	}

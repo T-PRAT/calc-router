@@ -33,6 +33,8 @@ export const reducer = (state, action) => {
 			return { ...state, current: "", message: "", clearable: false }
 		case "FETCHED":
 			return { ...state, fetchData: false }
+		case "RESET":
+			return { ...state, ...initialState }
 		default:
 			throw ("ERROR_CALC")
 	}
@@ -40,7 +42,6 @@ export const reducer = (state, action) => {
 
 function save(dayId, expression, result) {
 	localforage.getItem(dayId).then((day) => {
-		console.log(day, expression, result, dayId)
 		const newExpr = expression.split("+").join(" + ").split("*").join(" * ")
 		localforage.setItem(dayId, [...(day === null ? [] : day), [newExpr, result]])
 	}).catch((err) => {
@@ -49,7 +50,6 @@ function save(dayId, expression, result) {
 }
 
 function calc(expression) {
-	console.log(expression)
 	const added = expression.split("+")
 	const multiplied = added.map(s => s.split("*").map(Number).reduce((a, b) => a * b))
 	return multiplied.reduce((a, b) => a + b) + ""
